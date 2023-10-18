@@ -2,12 +2,12 @@ const Book = require('../models/book');
 const fs = require('fs');
 
 exports.createBook = (req, res, next) => {
-  if (!req.isAuthenticated) {
+  if (!req.headers.authorization) {
     return res.status(401).json({ error: "Vous devez être connecté pour créer un livre." });
   }
 
   const { title, author, year, genre } = JSON.parse(req.body.book);
-  const userId = req.userData.userId; // Use req.userData instead of req.auth
+  const userId = req.userData.userId; 
   const imageUrl = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
   const book = new Book({
     title,
@@ -28,7 +28,7 @@ exports.createBook = (req, res, next) => {
 };
 
 exports.modifyBook = (req, res, next) => {
-  if (!req.isAuthenticated) {
+  if (!req.headers.authorization) {
     return res.status(401).json({ error: "Vous devez être connecté pour modifier un livre." });
   }
 
@@ -55,7 +55,7 @@ exports.modifyBook = (req, res, next) => {
 };
 
 exports.deleteBook = (req, res, next) => {
-  if (!req.isAuthenticated) {
+  if (!req.headers.authorization) {
     return res.status(401).json({ error: "Vous devez être connecté pour supprimer un livre." });
   }
  
