@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 
+// Définition du schéma pour les notations/ratings
 const ratingsSchema = mongoose.Schema({
   userId: String,
-  grade: Number
+  rating: Number
 });
 
+// Définition du schéma pour un livre
 const bookSchema = mongoose.Schema({
   title: { type: String, required: true },
   genre: { type: String, required: true },
