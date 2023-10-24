@@ -5,8 +5,11 @@ const cors = require('cors');
 const userRoutes = require('./routes/user');
 const bookRoutes = require('./routes/book');
 const path = require('path');
+const dotenv = require('dotenv');
+dotenv.config();
 
-const url = 'mongodb+srv://dev_userman:<password>@cluster0.9rqts1f.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp'; 
+
+const url = process.env.MONGODB_URI; 
 
 // Connexion à la base de données MongoDB
  // Utilisation du nouvel analyseur d'URL
